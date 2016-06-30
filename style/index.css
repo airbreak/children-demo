@@ -11,16 +11,14 @@ ul li {
   white-space: nowrap;
 }
 body {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
+  margin: 0;
+  padding: 0;
   height: 100%;
   width: 100%;
   overflow: auto;
   background-color: white;
   -webkit-overflow-scrolling: touch;
+  overflow-x: hidden;
   /* ios滑动卡顿解决办法 */
 }
 body * {
@@ -30,19 +28,91 @@ body * {
   -moz-user-select: none;
   font-family: STHeiti, 'Microsoft YaHei', Helvetica, Arial, sans-serif;
 }
-body .main {
+header {
+  width: 100%;
+  height: 176px;
+  position: relative;
+  overflow: hidden;
+}
+header #slider4 {
+  height: 100%;
+  white-space: nowrap;
+  width: 100%;
+}
+header #slider4 li {
+  margin: 0;
+  display: inline-block;
+  text-align: center;
+  padding: 0px;
+  background-color: transparent;
+  overflow: hidden;
+  height: 100%;
+  box-sizing: border-box;
+}
+header #slider4 li a {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+header #slider4 li a img {
+  /* max-width: 100%;
+                    max-height: 100%;*/
+}
+header #currentPage {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  height: 10px;
+}
+header #currentPage li {
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: #fff;
+  float: left;
+  margin-right: 5px;
+}
+header #currentPage li.actived {
+  background-color: #febd00;
+}
+.main {
   min-width: 300px;
 }
-body .article-wrapper-item {
+.nav-container {
+  height: 40px;
+  width: 100%;
+  background-color: #f2f2f2;
+}
+.nav-container li {
+  display: inline-block;
+  width: 24%;
+  height: 100%;
+  line-height: 40px;
+  text-align: center;
+}
+.nav-container li.selected {
+  color: #febd00;
+}
+.article-wrapper {
+  margin-top: 20px;
+}
+.article-wrapper-item {
+  display: none;
   margin: 0em;
   width: 100%;
 }
-body .article-wrapper-item li {
+.article-wrapper-item:first-child {
+  display: block;
+}
+.article-wrapper-item li {
   width: 100%;
   height: 6em;
   position: relative;
 }
-body .article-wrapper-item li .coverBorderContainer {
+.article-wrapper-item li:last-child a {
+  border: 0;
+}
+.article-wrapper-item li .coverBorderContainer {
   position: absolute;
   height: 0.0625em;
   bottom: 0em;
@@ -50,43 +120,42 @@ body .article-wrapper-item li .coverBorderContainer {
   width: 0.75em;
   z-index: 100;
 }
-body .article-wrapper-item li a {
+.article-wrapper-item li a {
   height: 100%;
   display: block;
   position: relative;
   text-decoration: none;
   color: #212121;
-  padding: 0.75em 30px;
+  padding: 0.75em;
   border-bottom: 0.0625em solid #bdbdbd;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   -o-box-sizing: border-box;
+  /*&:active {
+                background-color: #DCDCDC;
+            }
+            &:visited {
+                background-color: #DCDCDC;
+                color: #ccc;
+            }*/
 }
-body .article-wrapper-item li a:active {
-  background-color: #DCDCDC;
-}
-body .article-wrapper-item li a:visited {
-  background-color: #DCDCDC;
-  color: #ccc;
-}
-body .article-wrapper-item li a .left {
+.article-wrapper-item li a .left {
   width: 4.5em;
   height: 4.5em;
   position: absolute;
-  background-image: url('__IMG__/logocover.png');
 }
-body .article-wrapper-item li a .left img {
+.article-wrapper-item li a .left img {
   width: 100%;
   height: 100%;
 }
-body .article-wrapper-item li a .right {
+.article-wrapper-item li a .right {
   padding-left: 5.25em;
   height: 100%;
 }
-body .article-wrapper-item li a .right .rightHeader {
+.article-wrapper-item li a .right .rightHeader {
   width: 100%;
 }
-body .article-wrapper-item li a .right .rightHeader h3 {
+.article-wrapper-item li a .right .rightHeader h3 {
   margin: 0.2em 0;
   line-height: 1.4em;
   text-decoration: none;
@@ -95,10 +164,10 @@ body .article-wrapper-item li a .right .rightHeader h3 {
   overflow: hidden;
   white-space: nowrap;
 }
-body .article-wrapper-item li a .right .rightBottom {
+.article-wrapper-item li a .right .rightBottom {
   width: 100%;
 }
-body .article-wrapper-item li a .right .rightBottom p {
+.article-wrapper-item li a .right .rightBottom p {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;

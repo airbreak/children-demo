@@ -13,16 +13,14 @@ ul {
 }
 
 body {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
+    margin: 0;
+    padding: 0;
     height: 100%;
     width: 100%;
     overflow: auto;
     background-color: white;
     -webkit-overflow-scrolling: touch;
+    overflow-x:hidden;
     /* ios滑动卡顿解决办法 */
     * {
         font-size: 1em;
@@ -31,78 +29,154 @@ body {
         -moz-user-select: none;
         font-family: STHeiti, 'Microsoft YaHei', Helvetica, Arial, sans-serif;
     }
-    .main {
-        min-width: 300px;
-    }
-    .article-wrapper-item {
-        margin: 0em;
+}
+
+header {
+    width: 100%;
+    height: 176px;
+    position: relative;
+    overflow: hidden;
+    #slider4 {
+        height: 100%;
+        white-space: nowrap;
         width: 100%;
         li {
-            width: 100%;
-            height: 6em;
-            position: relative;
-            .coverBorderContainer {
-                position: absolute;
-                height: 0.0625em;
-                bottom: 0em;
-                background-color: white;
-                width: 0.75em;
-                z-index: 100;
-            }
+            margin: 0;
+            display: inline-block;
+            text-align: center;
+            padding:0px;
+            background-color: transparent;
+            overflow: hidden;
+            height: 100%;
+            box-sizing: border-box;
             a {
-                height: 100%;
                 display: block;
-                position: relative;
-                text-decoration: none;
-                color: #212121;
-                padding: 0.75em 30px;
-                border-bottom: 0.0625em solid #bdbdbd;
-                -webkit-box-sizing: border-box;
-                -moz-box-sizing: border-box;
-                -o-box-sizing: border-box;
-                &:active {
-                    background-color: #DCDCDC;
+                height: 100%;
+                width: 100%;
+                img {
+                   /* max-width: 100%;
+                    max-height: 100%;*/
                 }
-                &:visited {
-                    background-color: #DCDCDC;
-                    color: #ccc;
-                }
-                .left {
-                    width: 4.5em;
-                    height: 4.5em;
-                    position: absolute;
-                    background-image: url('__IMG__/logocover.png');
-                    img {
-                        width: 100%;
-                        height: 100%;
-                        // opacity: 0;
-                    }
-                }
-                .right {
-                    padding-left: 5.25em;
+            }
+        }
+    }
+    #currentPage {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        height: 10px;
+        li {
+            width: 10px;
+            height: 10px;
+            border-radius: 5px;
+            background-color: #fff;
+            float: left;
+            margin-right: 5px;
+            &.actived {
+                background-color: #febd00;
+            }
+        }
+    }
+}
+
+.main {
+    min-width: 300px;
+}
+.nav-container{
+    height: 40px;
+    width: 100%;
+    background-color: #f2f2f2;
+    li{
+        display: inline-block;
+        width: 24%;
+        height: 100%;
+        line-height: 40px;
+        text-align: center;
+        &.selected{
+            color: #febd00;
+        }
+    }
+}
+.article-wrapper{
+    margin-top: 20px;
+}
+
+.article-wrapper-item {
+    display: none;
+    margin: 0em;
+    width: 100%;
+    &:first-child{
+        display:block;
+    }
+    li {
+        width: 100%;
+        height: 6em;
+        position: relative;
+        &:last-child{
+            a{
+                border:0;
+            }
+        }
+        .coverBorderContainer {
+            position: absolute;
+            height: 0.0625em;
+            bottom: 0em;
+            background-color: white;
+            width: 0.75em;
+            z-index: 100;
+        }
+        a {
+            height: 100%;
+            display: block;
+            position: relative;
+            text-decoration: none;
+            color: #212121;
+            padding: 0.75em;
+            border-bottom: 0.0625em solid #bdbdbd;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -o-box-sizing: border-box;
+            /*&:active {
+                background-color: #DCDCDC;
+            }
+            &:visited {
+                background-color: #DCDCDC;
+                color: #ccc;
+            }*/
+            .left {
+                width: 4.5em;
+                height: 4.5em;
+                position: absolute;
+                img {
+                    width: 100%;
                     height: 100%;
-                    .rightHeader {
-                        width: 100%;
-                        h3 {
-                            margin: 0.2em 0;
-                            line-height: 1.4em;
-                            text-decoration: none;
-                            color: #222;
-                            .txt-ellipsis;
-                        }
+                    // opacity: 0;
+                }
+            }
+            .right {
+                padding-left: 5.25em;
+                height: 100%;
+                .rightHeader {
+                    width: 100%;
+                    h3 {
+                        margin: 0.2em 0;
+                        line-height: 1.4em;
+                        text-decoration: none;
+                        color: #222;
+                        .txt-ellipsis;
                     }
-                    .rightBottom {
-                         width: 100%;
-                        p{
-                            overflow: hidden;
-                            text-overflow: ellipsis;
-                            display: -webkit-box;
-                            -webkit-box-orient: vertical;
-                            -webkit-line-clamp: 2;
-                            line-height: 1.3;
-                            font-size: .8em;
-                            color:#212121;
-                        }
+                }
+                .rightBottom {
+                    width: 100%;
+                    p {
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-box-orient: vertical;
+                        -webkit-line-clamp: 2;
+                        line-height: 1.3;
+                        font-size: .8em;
+                        color: #212121;
                     }
                 }
             }

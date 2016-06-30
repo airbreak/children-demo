@@ -1,4 +1,5 @@
 define(['base', 'fastclick'], function(Base) {
+    FastClick.attach(document.body);
     var Baby = function() {
         Base.call(this);
         this.pageIndex = 1;
@@ -6,7 +7,13 @@ define(['base', 'fastclick'], function(Base) {
         this.totalPage = 1;
         this.loadData(1);
         var that = this;
-    }
+
+        $(document).on('click','.nav-item', function (e) {
+            var index = $(this).index();
+            $(this).addClass('selected').siblings().removeClass('selected');
+            $('.article-wrapper-item').eq(index).show().siblings().hide();
+        });  
+    };
 
     Baby.prototype = new Base();
     Baby.constructor = Baby;
@@ -22,6 +29,14 @@ define(['base', 'fastclick'], function(Base) {
     t.loadData = function(pageIndex, callback) {
         var that = this;
         this.getDataAsync(pageIndex, callback);
+        var cover={
+            data:[
+                'imgs/1.png',
+                'imgs/2.png',
+                'imgs/3.png'
+            ]
+        };
+        this.fillInTouchSliderItem(cover);
     };
 
     /*
@@ -90,21 +105,46 @@ define(['base', 'fastclick'], function(Base) {
         }
     };
 
-    /*
-     *字符串截取
-     * para
-     * str - {string} 目标字符串
-     * len - {int} 最大长度
+     /*
+     *填充滚动区域的图片
+     *@para:
+     *covers - {obj} 内容信息，包括地址数组等
+     *flag - {bool} 是否没有图片，false 则使用 nocover 样式 控制
      */
-    t.substrLongStr = function(str, len) {
-        if (str.length > len) {
-            str = str.substr(0, parseInt(len - 1)) + '……';
+    t.fillInTouchSliderItem=function(covers,flag){
+        var data=covers.data,
+            len=data.length,
+            str='',str1='',
+            className='',className1='nocover';
+        if(flag){
+            className1='';
         }
-        return str;
+        for(var i=0;i<len;i++){
+            str+='<li >'+
+                    //'<a href="javascript:showFullImg('+i+')">'+
+                    '<a href="javascript:void(0)">'+
+                        '<img src="'+data[i]+'" alt="" class="'+ className1 +'">'+
+                    '</a>'+
+                  '</li>';
+            className='';
+            if(i==0){
+                className='actived';
+            }
+            str1+='<li class="'+className+'"></li>';
+        }
+        $('#slider4').html(str);
+        $('#currentPage').html(str1);
+
+        //初始滑动
+        this.initTouchSlider();
     };
 
-    t.getTimeFromTimestamp = function(dateInfo, dateFormat) {
-        return new Date(parseFloat(dateInfo) * 1000).format(dateFormat);
+    /*滑动图片*/
+    t.initTouchSlider=function(){
+        this.t4=new TouchSlider('slider4',{speed:1000, direction:0, interval:1000, fullsize:true});
+        this.t4.on('before', function (m, n) {
+            $('#currentPage li').eq(n).addClass('actived').siblings().removeClass('actived');
+        });
     };
 
     return Baby;

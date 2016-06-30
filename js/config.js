@@ -11,6 +11,7 @@ requirejs.config({
         fastclick:'fastclick',
         lazyloading:'lazyloading',
         index:'index',
+        touchslider:'touchSlider-lib',
     },
     shim: {
         $:{
