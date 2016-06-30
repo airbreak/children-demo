@@ -156,7 +156,7 @@ header #currentPage li.actived {
   width: 100%;
 }
 .article-wrapper-item li a .right .rightHeader h3 {
-  margin: 0.2em 0;
+  margin: 0;
   line-height: 1.4em;
   text-decoration: none;
   color: #222;
