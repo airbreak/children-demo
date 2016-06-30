@@ -21,11 +21,6 @@ define(['base', 'fastclick'], function(Base) {
     var t = Baby.prototype;
 
 
-    /*
-     *加载新闻列表数据
-     * para:
-     * pageIndex - {int} 当前的页码数
-     */
     t.loadData = function(pageIndex, callback) {
         var that = this;
         this.getDataAsync(pageIndex, callback);
