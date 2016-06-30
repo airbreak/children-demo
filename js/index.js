@@ -65,7 +65,7 @@ define(['base', 'fastclick'], function(Base) {
                                     '<h3>' + title + '</h3>' +
                                 '</div>' +
                                 '<div class="rightBottom">' +
-                                    '<div class="rightBottomRight">' + item.digest + '</div>' +
+                                    '<p class="rightBottomRight">' + item.digest + '</p>' +
                                 '</div>' +
                             '</div>' +
                         '</a>' +
