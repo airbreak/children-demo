@@ -6,7 +6,7 @@
 define(['$'],function() {
 
     /**基础类**/
-    var Base = function (flag) {
+    var Base = function () {
         var userAgent = window.location.href;
         this.isFromApp = userAgent.indexOf('hisihi-app') >= 0;
         this.isLocal=userAgent.indexOf('localhost') >= 0 || userAgent.indexOf('192.168.')>=0;
@@ -21,9 +21,6 @@ define(['$'],function() {
         this._initStringExtentFn();
         this._addTip();
         this._addLoadingImg();
-        if(!flag) {
-            this._stopTouchendPropagationAfterScroll();
-        }
     };
 
     Base.prototype = {
@@ -413,21 +410,6 @@ define(['$'],function() {
                     'overflow': 'auto',
                     'position': oldPosStyle,
                 });
-            }
-        },
-
-        /*滚动时，禁用touchend*/
-        _stopTouchendPropagationAfterScroll:function(){
-            var flag = false;
-            window.addEventListener('touchmove', function(ev){
-                flag || (flag = true, window.addEventListener('touchend', stopTouchendPropagation, true));
-            }, false);
-            function stopTouchendPropagation(ev){
-                ev.stopPropagation();
-                setTimeout(function(){
-                    window.removeEventListener('touchend', stopTouchendPropagation, true);
-                    flag = false;
-                }, 50);
             }
         },
 
